@@ -15,7 +15,6 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 })
 export class UiLtrComponent {
   data: any;
-
   isChecked: boolean = true;
   itemsPerPage = 4;
   page = 1;
