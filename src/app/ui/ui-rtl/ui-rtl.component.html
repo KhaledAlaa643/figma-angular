@@ -1,0 +1,189 @@
+    <section class="details sm-sc">
+        <div class="ticket">
+            <h3>
+                <i class="fa-solid fa-arrow-right"></i>
+                تذكرة رقم #2342 
+            </h3>
+        </div>
+        <div class="edit">
+            <h3>
+                <i class="fa-solid fa-pen-to-square" style="color: #8a74f9;"></i>
+                تعديل 
+            </h3>
+        </div>
+    </section>
+
+    <section class="my-container first-section">
+        <div class="line-chart">
+            <div class="chart-top">
+                <div class="statisticc">
+                    <h2 class="statisticc-text">إحصائيات استخدام القسيمة</h2>
+                    <h5 class="statisticc-date">
+                        5 يوليو , 2023 - 05 أغسطس , 2023
+                    </h5>      
+                </div>
+                <div class="drop-list">
+                    <select class="styled-select" id="selectDropdown">
+                        <option value="option1">سنويا</option>
+                        <option value="option2">شهريا</option>
+                        <option value="option3">اسبوعيا</option>
+                    </select>
+                    <i class="fa-solid fa-arrow-down"></i>
+                </div>
+
+            </div>
+            <div class="line-chart-container">
+                <p-chart  
+                class="line-chart"  width="400" height="264" type="line" [data]="data" [options]="options"
+                ></p-chart>
+
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-background"></div>
+            <div class="title">
+                <h2 class="card-title">
+                    
+                    عرض التذكرة الخاصة بالفيلم
+                    <button type="button"class="remove">
+                        <i class="fa-solid fa-trash-can "></i>
+                    </button>
+                
+                </h2>
+            </div>
+            <div class="card-content">
+                <div class="card-copy">
+                    <div class="copy">
+                        <h3>www.tazkty.com/473847</h3>
+                    </div>
+                    <a href="#" class="copy-link">
+                        <i class="fas fa-copy" style="color: #8A74F9;"></i>
+                    </a>
+                </div>
+                <h3 >فعال حتي 15 يوليو 2023</h3>
+
+                <div class="dotted-line"></div> 
+                <div class="card-details">                
+                    <div class="share">
+                        <div class="disc">
+                            <p>خصم</p>
+                            <p class="dicount">25%</p>
+                        </div>
+                        <div class="share-btn">
+                            <button type="button" >
+                                مشاركة                  
+                                <i class="fa-solid fa-share"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <img src="../../../assets/Images/khaled.gif" width="20%" height="20%" alt="QR Code">
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="my-container second-section">
+        <div class="filter">
+            <div class="ticket-container">
+                <h3 class="ticket-sale">مبيعات التذاكر</h3>
+                <div class="search-container">
+                    <div class="search-input">
+                        <input type="text" class="search" placeholder="بحث..... ">
+                        <i class="fa-solid fa-magnifying-glass  search-icon" ></i>
+                    </div>
+                    <div class="filter-icon">
+                        <button type="button">
+                            <i class="fa-solid fa-sliders"></i>            
+                        </button>
+                        <button type="button">
+                            <i class="fa-solid fa-arrow-up-short-wide"></i>            
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="new-ticket">
+                <div class="toggle">
+                    <label class="switch">
+                        <input type="checkbox"  [(ngModel)]="isChecked">
+                        <span class="slider round"></span>
+                    </label>
+                    <h3>{{ isChecked ? 'مفعلة' : 'غير مفعلة' }}</h3>
+                </div>
+                <div class="new-btn">
+                    <button type="button" class="new-btn">
+                        حجز تذكرة جديدة
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="my-container">
+        <div class="table-data ticket-table">
+            <table class="my-table">
+            <thead>
+                <tr>
+                <th>#</th>
+                <th>المستخدم</th>
+                <th>رقم التذكرة</th>
+                <th>قيمة التذكرة</th>
+                <th>السينمات</th>
+                <th>عدد الأشخاص</th>
+                <th>عدد مرات الشراء</th>
+                <th>التذكرة</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let ticket of pagedData; let i = index">
+                <td scope="row">{{ i + 1 + (page - 1) * itemsPerPage }}</td>
+                <td>
+                    <div class="user-info">
+                    <img [src]="ticket.user.avatar" alt="User Avatar" />
+                    <div class="user-details">
+                        <p>{{ ticket.user.name }}</p>
+                        <p class="ticket-size">{{ ticket.user.phone }}</p>
+                    </div>
+                    </div>
+                </td>
+                <td>{{ ticket.ticketNumber }}</td>
+                <td>{{ ticket.ticketValue }}</td>
+                <td>{{ ticket.cinemas.join(', ') }}</td>
+                <td>{{ ticket.numberOfPeople }}</td>
+                <td>{{ ticket.purchaseCount }}</td>
+                <td>
+                    <div class="ticketNumber">
+                    <i class="fa-solid fa-ticket" style="color: #8A74F9;"></i>
+                    <a [href]="ticket.ticketLink">
+                        تذكرة رقم {{ ticket.ticketNumber }}.pdf
+                        <p class="ticket-size">pdf . 9 mb</p>
+                    </a>
+                    <i class="fa-solid fa-download" style="color: #8A74F9;"></i>
+                    </div>
+                </td>
+                </tr>
+            </tbody>
+            <tfoot class="grey lighten-5 w-100">
+                <tr>
+                <td colspan="8">
+                </td>
+            </tr>
+        </tfoot>
+            </table>
+            <div class="pagination">
+                <mat-paginator 
+                    aria-label="Select page"
+                    [length]="selectedData.length"
+                    [pageSizeOptions]="pageSizeOptions"
+                    (page)="onPageChange($event)"
+                    [showFirstLastButtons]="false">
+                </mat-paginator>
+                <ngb-pagination
+                [collectionSize]="selectedData.length"
+                [(page)]="page"
+                [pageSize]="itemsPerPage"
+                [boundaryLinks]="false"
+                ></ngb-pagination>
+            </div>
+        </div>
+    </div>
