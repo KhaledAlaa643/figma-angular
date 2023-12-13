@@ -1,0 +1,39 @@
+<section class="body" [style.direction] = "direction">
+    <!-- select language -->
+    <section class="language" >
+        <div>
+            <select (change)="onLanguageChange($event)" id="selectDropdown">
+                @for (option of languageOptions; track $index) {
+                    <option [id]="option.id" >
+                        {{ option.name }}
+                    </option>            
+                }
+            </select>
+        </div>
+    </section>
+
+    <!-- ticket details -->
+    <section class="details ticket-details" [style.direction] = "direction">
+        <div class="ticket" >
+                <span><i class="fa-solid fa-arrow-{{direction=='rtl' ? 'right' : 'left'}}"></i></span>
+                <span> {{data.ticket}} #2342 </span>
+        </div>
+        <div class="edit">
+            <span ><i class="fa-solid fa-pen-to-square" style="color: #8a74f9;"></i></span>
+            <span> {{data.edit}} </span>
+        </div>
+    </section>
+
+    <!-- chart & card -->
+    <section class="details components"[style.direction] = "direction">
+            <chart></chart>
+            <card></card>
+    </section>
+
+    <!-- table -->
+    <my-table 
+        class="my-table" 
+        style="flex-direction: column;"
+        [style.direction] = "direction"
+    ></my-table>
+</section>
