@@ -15,18 +15,18 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 })
 export class UiLtrComponent {
   data: any;
+  options: any;
   isChecked: boolean = true;
   itemsPerPage = 4;
   page = 1;
   dataItems!: number;
   pageSizeOptions!: any
-  options: any;
   selectedData: any[] = [];
 
 
   constructor(private renderer: Renderer2, private el: ElementRef, private uiService: UiService) {
     this.pageSizeOptions = [5, 10, 50, 100]
-    this.selectedData = this.uiService.getDataEng()
+    this.selectedData = this.uiService.getDataLang(false)
   }
 
 
@@ -46,13 +46,13 @@ export class UiLtrComponent {
         
       ]
     },
-      this.options = {
+    this.options = {
         plugins: {
           legend: {
             display: false
           }
         }
-      }
+    }
     this.dataItems = this.itemsPerPage;
   }
   
@@ -69,7 +69,7 @@ export class UiLtrComponent {
     this.renderer.setStyle(element, 'font-size', '10.5');
     
     const element2 = this.el.nativeElement.querySelector('.mat-mdc-paginator-range-label');
-    this.renderer.setProperty(element2, 'innerText', `From ${this.uiService.getDataEng().length}`);
+    this.renderer.setProperty(element2, 'innerText', `From ${this.uiService.getDataLang(false).length}`);
     this.renderer.setStyle(element2, 'font-family', 'Neo-Sans-Arabic-Medium');
     this.renderer.setStyle(element2, 'font-size', '10.5');
 
@@ -84,8 +84,8 @@ export class UiLtrComponent {
     if (resetOption) {
       this.selectedData = [];
     }
-    for (let i = 0; i < Math.min(this.dataItems, this.uiService.getDataEng().length); i++) {
-      this.selectedData.push(this.uiService.getDataEng()[i]);
+    for (let i = 0; i < Math.min(this.dataItems, this.uiService.getDataLang(false).length); i++) {
+      this.selectedData.push(this.uiService.getDataLang(false)[i]);
     }
     return this
   }

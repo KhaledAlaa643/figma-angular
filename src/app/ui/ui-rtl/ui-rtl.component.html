@@ -1,6 +1,6 @@
     <section class="details sm-sc">
         <div class="ticket">
-            <h3>
+            <h3 [ngStyle]="{'background-color':'green'}">
                 <i class="fa-solid fa-arrow-right"></i>
                 تذكرة رقم #2342 
             </h3>
@@ -43,7 +43,6 @@
             <div class="card-background"></div>
             <div class="title">
                 <h2 class="card-title">
-                    
                     عرض التذكرة الخاصة بالفيلم
                     <button type="button"class="remove">
                         <i class="fa-solid fa-trash-can "></i>
@@ -90,7 +89,7 @@
                 <div class="search-container">
                     <div class="search-input">
                         <input type="text" class="search" placeholder="بحث..... ">
-                        <i class="fa-solid fa-magnifying-glass  search-icon" ></i>
+                        <i class="fa-solid fa-magnifying-glass search-icon" ></i>
                     </div>
                     <div class="filter-icon">
                         <button type="button">
@@ -120,70 +119,104 @@
     </section>
 
     <div class="my-container">
-        <div class="table-data ticket-table">
+        <div class="ticket-table">
             <table class="my-table">
-            <thead>
-                <tr>
-                <th>#</th>
-                <th>المستخدم</th>
-                <th>رقم التذكرة</th>
-                <th>قيمة التذكرة</th>
-                <th>السينمات</th>
-                <th>عدد الأشخاص</th>
-                <th>عدد مرات الشراء</th>
-                <th>التذكرة</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let ticket of pagedData; let i = index">
-                <td scope="row">{{ i + 1 + (page - 1) * itemsPerPage }}</td>
-                <td>
-                    <div class="user-info">
-                    <img [src]="ticket.user.avatar" alt="User Avatar" />
-                    <div class="user-details">
-                        <p>{{ ticket.user.name }}</p>
-                        <p class="ticket-size">{{ ticket.user.phone }}</p>
-                    </div>
-                    </div>
-                </td>
-                <td>{{ ticket.ticketNumber }}</td>
-                <td>{{ ticket.ticketValue }}</td>
-                <td>{{ ticket.cinemas.join(', ') }}</td>
-                <td>{{ ticket.numberOfPeople }}</td>
-                <td>{{ ticket.purchaseCount }}</td>
-                <td>
-                    <div class="ticketNumber">
-                    <i class="fa-solid fa-ticket" style="color: #8A74F9;"></i>
-                    <a [href]="ticket.ticketLink">
-                        تذكرة رقم {{ ticket.ticketNumber }}.pdf
-                        <p class="ticket-size">pdf . 9 mb</p>
-                    </a>
-                    <i class="fa-solid fa-download" style="color: #8A74F9;"></i>
-                    </div>
-                </td>
-                </tr>
-            </tbody>
-            <tfoot class="grey lighten-5 w-100">
-                <tr>
-                <td colspan="8">
-                </td>
-            </tr>
-        </tfoot>
+                <thead>
+                    <tr>
+                    <th>#</th>
+                    <th>المستخدم</th>
+                    <th>رقم التذكرة</th>
+                    <th>قيمة التذكرة</th>
+                    <th>السينمات</th>
+                    <th>عدد الأشخاص</th>
+                    <th>عدد مرات الشراء</th>
+                    <th>التذكرة</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let ticket of pagedData; let i = index">
+                        <td scope="row">{{ i + 1 + ((page - 1) * itemsPerPage ) }}</td>
+                        <td>
+                            <div class="user-info">
+                            <img [src]="ticket.user.avatar" alt="User Avatar" />
+                            <div class="user-details">
+                                <p>{{ ticket.user.name }}</p>
+                                <p class="ticket-size">{{ ticket.user.phone }}</p>
+                            </div>
+                            </div>
+                        </td>
+                        <td>{{ ticket.ticketNumber }}</td>
+                        <td>{{ ticket.ticketValue }}</td>
+                        <td>{{ ticket.cinemas.join(', ') }}</td>
+                        <td>{{ ticket.numberOfPeople }}</td>
+                        <td>{{ ticket.purchaseCount }}</td>
+                        <td>
+                            <div class="ticketNumber">
+                            <i class="fa-solid fa-ticket" style="color: #8A74F9;"></i>
+                            <a [href]="ticket.ticketLink">
+                                تذكرة رقم {{ ticket.ticketNumber }}.pdf
+                                <p class="ticket-size">pdf . 9 mb</p>
+                            </a>
+                            <i class="fa-solid fa-download" style="color: #8A74F9;"></i>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
-            <div class="pagination">
-                <mat-paginator 
-                    aria-label="Select page"
-                    [length]="selectedData.length"
-                    [pageSizeOptions]="pageSizeOptions"
-                    (page)="onPageChange($event)"
-                    [showFirstLastButtons]="false">
-                </mat-paginator>
-                <ngb-pagination
-                [collectionSize]="selectedData.length"
-                [(page)]="page"
-                [pageSize]="itemsPerPage"
-                [boundaryLinks]="false"
-                ></ngb-pagination>
-            </div>
+        </div>
+        <div class="pagination">
+            <mat-paginator 
+                aria-label="Select page"
+                [length]="selectedData.length"
+                [pageSizeOptions]="pageSizeOptions"
+                (page)="onPageChange($event)"
+                [showFirstLastButtons]="false">
+            </mat-paginator>
+            <ngb-pagination
+            [collectionSize]="selectedData.length"
+            [(page)]="page"
+            [pageSize]="itemsPerPage"
+            [boundaryLinks]="false"
+            ></ngb-pagination>
         </div>
     </div>
+
+    <!-- 
+        <div class="filter" [style.direction] = "direction">
+            <div class="ticket-container">
+                <h3 class="ticket-sale">{{data.ticketSale }}</h3>
+                <div class="search-container">
+                    <div class="search-input">
+                        <input type="text" class="search" placeholder="{{data.search}}..... ">
+                        <i class="fa-solid fa-magnifying-glass  search-icon" ></i>
+                    </div>
+                    <div class="filter-icon">
+                        <button type="button">
+                            <i class="fa-solid fa-sliders"></i>            
+                        </button>
+                        <button type="button">
+                            <i class="fa-solid fa-arrow-up-short-wide"></i>            
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="new-ticket" >
+                <div class="toggle"[style.direction] = "direction">
+                    <div class="label">
+                        <label class="switch" >
+                            <input type="checkbox"  [(ngModel)]="isChecked">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div class="status">
+                        <h3>{{ isChecked ? data.switch.on : data.switch.off }}</h3>
+                    </div>
+                </div>
+                <div class="new-btn">
+                    <button type="button" class="new-btn">
+                        {{data.newTicket}}
+                    </button>
+                </div>
+            </div>
+        </div> 
+     -->

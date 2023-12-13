@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UiService {
-  private allData= [
+  private dataAr= [
     {
       user: {
         avatar: "../../../assets/Images/avatar.svg",
@@ -150,7 +150,7 @@ export class UiService {
     },
   ]; 
   
-  private allDataEng= [
+  private dataEng= [
     {
       user: {
         avatar: "../../../assets/Images/avatar.svg",
@@ -336,13 +336,7 @@ export class UiService {
    
   ]; 
   
-  constructor() { }
-  
-    getData() {
-      return this.allData;
-    }
-    getDataEng() {
-      return this.allDataEng;
-    }
-  
+  getDataLang(lang:boolean = true) {
+    return lang ? this.dataAr : this.dataEng
+  }
 }

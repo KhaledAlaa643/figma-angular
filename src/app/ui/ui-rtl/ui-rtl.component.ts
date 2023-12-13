@@ -17,15 +17,15 @@ export class UiRtlComponent {
   data: any;
   isChecked: boolean = true;
   itemsPerPage = 4;
-  page = 1;
+  page!:number;
   dataItems!: number;
-  pageSizeOptions!:any
+  pageSizeOptions!:any[]
   options: any;
   selectedData: any[] = [];
-
   constructor(private renderer: Renderer2, private el: ElementRef,private uiService: UiService) { 
     this.pageSizeOptions = [5, 10, 50, 100]
-    this.selectedData = this.uiService.getData()
+    this.page = 1;
+    this.selectedData = this.uiService.getDataLang()
   }
   
   ngOnInit() {
@@ -43,36 +43,39 @@ export class UiRtlComponent {
         
       ]
     },
-      this.options = {
+    this.options = {
         plugins: {
           legend: {
             display: false
           }
         }
     }
+    // default = 4
     this.dataItems = this.itemsPerPage;
   }
   
-    onPageChange(event: any, resetOption: boolean = true) {
+  onPageChange(event: any, resetOption: boolean = true) {
+    // change the data to the selected size
     this.dataItems = event.pageSize;
     this.updateData(resetOption);
   }
-  ngAfterViewInit() {
 
+
+  ngAfterViewInit() {
     const element = this.el.nativeElement.querySelector('#mat-paginator-page-size-label-0');
-    this.renderer.setProperty(element, 'innerText', `من أصل ${this.uiService.getData().length}`);
+    const element2 = this.el.nativeElement.querySelector('.mat-mdc-paginator-range-label');
+    this.renderer.setProperty(element, 'innerText', `من أصل ${this.uiService.getDataLang().length}`);
     this.renderer.setStyle(element, 'font-family', 'Neo-Sans-Arabic-Medium');
     this.renderer.setStyle(element, 'font-size', '10.5');
     
-    const element2 = this.el.nativeElement.querySelector('.mat-mdc-paginator-range-label');
     this.renderer.setProperty(element2, 'innerText', "عرض");
     this.renderer.setStyle(element2, 'font-family', 'Neo-Sans-Arabic-Medium');
     this.renderer.setStyle(element2, 'font-size', '10.5');
 
   }
 
-    get pagedData() {
-    const startIndex = (this.page - 1) * this.itemsPerPage;
+  get pagedData() {
+    const startIndex = (this.page -1 ) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
     return this.selectedData.slice(startIndex, endIndex);
   }
@@ -81,10 +84,9 @@ export class UiRtlComponent {
     if (resetOption) {
       this.selectedData = [];
     }
-      for (let i = 0; i < Math.min(this.dataItems, this.uiService.getData().length); i++) {
-        this.selectedData.push(this.uiService.getData()[i]);
-      }
+      for (let i = 0; i < Math.min(this.dataItems, this.uiService.getDataLang().length); i++) {
+        this.selectedData.push(this.uiService.getDataLang()[i]);        
+      }    
     return this.selectedData;
-
   }
 }

@@ -34,10 +34,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
         ChartModule,
         TableModule,
         NgbModule,
-        ChartModule,
         UiRtlComponent,
         FormsModule,
-      MatPaginatorModule,
+        MatPaginatorModule,
         NgbPaginationModule
         
     ]

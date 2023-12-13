@@ -8,36 +8,71 @@ i{cursor: pointer;}
     width: 100%;
 }
 
+@media (min-width: 300) {
+    .my-container,
+    .details {
+        max-width: 461px;
+    }
+
+}
 @media (min-width: 640px) {
     .my-container,
     .details {
         max-width: 640px;
     }
+
 }
 @media (min-width: 768px) {
     .my-container,
     .details {
         max-width: 768px;
     }
+        .card {
+        width: 70%; 
+        margin: auto;
+    }
+    .line-chart{
+      width: 100%;
+    }
+    .my-container {
+      width: 100%;
+        flex-direction: column;
+    }
+    .sm-sc{
+      display: flex !important;
+      justify-content: space-between;
+    }
+
 }
 @media (min-width: 1024px) {
     .my-container,.details {
         max-width: 1024px;
     }
+
 }
 @media (min-width: 1280px) {
     .my-container,.details {
         max-width: 1280px;
     }
+    .ticket-table {
+      max-height: 400px;
+    }
 }
+
 @media (min-width: 1380px) {
     .my-container,.details {
         max-width: 1380px;
+    }
+        .ticket-table {
+      max-height: 400px;
     }
 }
 @media (min-width: 2500px) {
     .my-container,.details {
         max-width: 2500px;
+    }
+        .ticket-table {
+      max-height: 400px;
     }
 }
 
@@ -202,24 +237,6 @@ i{cursor: pointer;}
 
 }
 
-@media (max-width: 767px) {
-    .card {
-        width: 70%; 
-        margin: auto;
-    }
-    .line-chart{
-      width: 100%;
-    }
-    .my-container {
-      width: 100%;
-        flex-direction: column;
-    }
-    .sm-sc{
-      display: flex !important;
-      justify-content: space-between;
-    }
-
-}
 
 .card-title{
   font-family: 'Neo-Sans-Arabic-Medium', sans-serif; 
@@ -481,11 +498,13 @@ input[type="checkbox"] {
   }
   
 
-
-
-
-
+@media screen and (max-width: 461px) {
+  .ticket-table {
+    max-height: 850px;
+  }
+}
 @media screen and (max-width: 768px) {
+
     .filter {
         flex-direction: column;
         align-items: center;
@@ -608,7 +627,9 @@ mat-paginator{
 
 
 @media screen and (min-width: 300px) {
-  
+  .ticket-table {
+    height: 400px;
+  }
   table {
     width: 100%;
     border-collapse: collapse;
@@ -640,8 +661,9 @@ mat-paginator{
 }
 
 @media screen and (max-width: 767px) {
-
-
+  .ticket-table {
+      max-height:650px;
+    }
   table {
     width: 100%;
     border-collapse: collapse;
