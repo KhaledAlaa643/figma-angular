@@ -12,57 +12,13 @@
   font-family: 'Neo-Sans-Arabic-Medium';
   src: local('Neo-Sans-Medium'), url('./assets/Fonts/NotoSansArabic-Medium.ttf') format('woff2');
 }
-canvas {
-  font-family: 'Neo-Sans-Arabic-Light', sans-serif; 
-}
-.fa-star{
-  color: orange;
-}
 
-body, html {
-  scroll-behavior: smooth;
-   height: 100%;
-}
-#modalID > div > div > div{
-  background-color: rgba(21, 21, 21, 0.9);
-  border: 2px solid #1ab394;
-  width: fit-content;
-  margin: auto;
-}
 
-.swal2-cancel{
-      margin: 10px;
-}
-.modal-backdrop{
-  opacity: 0.5;
-display: none;
-}
 body { margin: 0; font-family: Neo-Sans-Arabic-Medium, "Helvetica Neue", sans-serif; }
 
 
 
-.ngx-pagination .current{
-      background: darkcyan  !important;
-      border-radius: 15px;
-      
-}
-.pagination-next, .pagination-previous{
-  color:white !important
-}
-.pagination-next:hover, .pagination-previous:hover{
-  color:black !important
-}
-.pagination-next.disabled, .pagination-previous.disabled{
-  color:black !important
-}
-.ngx-pagination a{
-  color: white !important
-}
-.ngx-pagination a:hover{
-  color: black !important;
-  border-radius: 15px;
 
-}
 p-chart > div > canvas{
   height: 157px !important;
     font-family: 'Neo-Sans-Arabic-Medium', sans-serif; 
